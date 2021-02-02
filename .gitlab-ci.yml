@@ -1,0 +1,6 @@
+test:
+  stage: test
+  variables:
+    ENVIRONMENT: LOCAL
+    PRODUCT: SEDIE
+  trigger: rnd/testing/ci-smoketest
