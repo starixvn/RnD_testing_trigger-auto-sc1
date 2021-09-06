@@ -1,6 +1,39 @@
-test:
+testSerial:
   stage: test
   variables:
-    ENVIRONMENT: LOCAL
-    PRODUCT: SEDIE
-  trigger: rnd/testing/ci-smoketest
+    PRODUCT: $PRODUCT
+  trigger: rnd/testing/mocha-playwright
+  rules:
+    - if: $PRODUCT != "All"
+
+testSedie:
+  stage: test
+  variables:
+    PRODUCT: Sedie
+  trigger: rnd/testing/mocha-playwright
+  rules:
+    - if: $PRODUCT == "All"
+
+testVipSedie:
+  stage: test
+  variables:
+    PRODUCT: VipSedie
+  trigger: rnd/testing/mocha-playwright
+  rules:
+    - if: $PRODUCT == "All"
+
+testBigSmall:
+  stage: test
+  variables:
+    PRODUCT: BigSmall
+  trigger: rnd/testing/mocha-playwright
+  rules:
+    - if: $PRODUCT == "All"
+
+testTurboBigSmall:
+  stage: test
+  variables:
+    PRODUCT: TurboBigSmall
+  trigger: rnd/testing/mocha-playwright
+  rules:
+    - if: $PRODUCT == "All"
