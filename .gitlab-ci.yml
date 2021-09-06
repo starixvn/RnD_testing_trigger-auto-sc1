@@ -17,7 +17,7 @@ testSedie:
 testVipSedie:
   stage: test
   variables:
-    PRODUCT: VipSedie
+    PRODUCT: VIpSedie
   trigger: rnd/testing/mocha-playwright
   rules:
     - if: $PRODUCT == "All"
