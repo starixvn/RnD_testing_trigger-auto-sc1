@@ -55,7 +55,7 @@ testTurboBigSmall:
     - if: $PRODUCT == "All"
 
 testMiniSedie:
-  stage: testPhase2
+  stage: testPhase1
   variables:
     PRODUCT: MiniSedie
   trigger: 
@@ -65,7 +65,7 @@ testMiniSedie:
     - if: $PRODUCT == "All"
 
 testTurboOddEven:
-  stage: testPhase3
+  stage: testPhase1
   variables:
     PRODUCT: TurboOddEven
   trigger: 
