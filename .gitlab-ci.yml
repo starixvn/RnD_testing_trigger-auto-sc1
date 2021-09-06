@@ -1,5 +1,11 @@
+stages: 
+  - testPhase1
+  - testPhase2
+  - testPhase3
+
+
 testSerial:
-  stage: test
+  stage: testPhase1
   variables:
     PRODUCT: "${PRODUCT}"
   trigger: rnd/testing/mocha-playwright
@@ -7,7 +13,7 @@ testSerial:
     - if: $PRODUCT != "All"
 
 testSedie:
-  stage: test
+  stage: testPhase1
   variables:
     PRODUCT: Sedie
   trigger: rnd/testing/mocha-playwright
@@ -15,7 +21,7 @@ testSedie:
     - if: $PRODUCT == "All"
 
 testVipSedie:
-  stage: test
+  stage: testPhase1
   variables:
     PRODUCT: VIpSedie
   trigger: rnd/testing/mocha-playwright
@@ -23,7 +29,7 @@ testVipSedie:
     - if: $PRODUCT == "All"
 
 testBigSmall:
-  stage: test
+  stage: testPhase1
   variables:
     PRODUCT: BigSmall
   trigger: rnd/testing/mocha-playwright
@@ -31,9 +37,31 @@ testBigSmall:
     - if: $PRODUCT == "All"
 
 testTurboBigSmall:
-  stage: test
+  stage: testPhase1
   variables:
     PRODUCT: TurboBigSmall
-  trigger: rnd/testing/mocha-playwright
+  trigger: 
+    project: rnd/testing/mocha-playwright
+    strategy: depend
+  rules:
+    - if: $PRODUCT == "All"
+
+testMiniSedie:
+  stage: testPhase2
+  variables:
+    PRODUCT: MiniSedie
+  trigger: 
+    project: rnd/testing/mocha-playwright
+    strategy: depend
+  rules:
+    - if: $PRODUCT == "All"
+
+testTurboOddEven:
+  stage: testPhase3
+  variables:
+    PRODUCT: TurboOddEven
+  trigger: 
+    project: rnd/testing/mocha-playwright
+    strategy: depend
   rules:
     - if: $PRODUCT == "All"
