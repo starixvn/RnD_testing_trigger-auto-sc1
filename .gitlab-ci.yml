@@ -54,22 +54,22 @@ testTurboBigSmall:
   rules:
     - if: $PRODUCT == "All"
 
-testMiniSedie:
-  stage: testPhase1
-  variables:
-    PRODUCT: MiniSedie
-  trigger: 
-    project: rnd/testing/mocha-playwright
-    strategy: depend
-  rules:
-    - if: $PRODUCT == "All"
+# testMiniSedie:
+#   stage: testPhase1
+#   variables:
+#     PRODUCT: MiniSedie
+#   trigger: 
+#     project: rnd/testing/mocha-playwright
+#     strategy: depend
+#   rules:
+#     - if: $PRODUCT == "All"
 
-testTurboOddEven:
-  stage: testPhase1
-  variables:
-    PRODUCT: TurboOddEven
-  trigger: 
-    project: rnd/testing/mocha-playwright
-    strategy: depend
-  rules:
-    - if: $PRODUCT == "All"
+# testTurboOddEven:
+#   stage: testPhase1
+#   variables:
+#     PRODUCT: TurboOddEven
+#   trigger: 
+#     project: rnd/testing/mocha-playwright
+#     strategy: depend
+#   rules:
+#     - if: $PRODUCT == "All"
