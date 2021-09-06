@@ -8,7 +8,9 @@ testSerial:
   stage: testPhase1
   variables:
     PRODUCT: "${PRODUCT}"
-  trigger: rnd/testing/mocha-playwright
+  trigger: 
+    project: rnd/testing/mocha-playwright
+    strategy: depend
   rules:
     - if: $PRODUCT != "All"
 
@@ -16,7 +18,9 @@ testSedie:
   stage: testPhase1
   variables:
     PRODUCT: Sedie
-  trigger: rnd/testing/mocha-playwright
+  trigger: 
+    project: rnd/testing/mocha-playwright
+    strategy: depend
   rules:
     - if: $PRODUCT == "All"
 
@@ -24,7 +28,9 @@ testVipSedie:
   stage: testPhase1
   variables:
     PRODUCT: VIpSedie
-  trigger: rnd/testing/mocha-playwright
+  trigger: 
+    project: rnd/testing/mocha-playwright
+    strategy: depend
   rules:
     - if: $PRODUCT == "All"
 
@@ -32,7 +38,9 @@ testBigSmall:
   stage: testPhase1
   variables:
     PRODUCT: BigSmall
-  trigger: rnd/testing/mocha-playwright
+  trigger: 
+    project: rnd/testing/mocha-playwright
+    strategy: depend
   rules:
     - if: $PRODUCT == "All"
 
