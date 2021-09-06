@@ -1,7 +1,7 @@
 testSerial:
   stage: test
   variables:
-    PRODUCT: ${PRODUCT}
+    PRODUCT: "${PRODUCT}"
   trigger: rnd/testing/mocha-playwright
   rules:
     - if: $PRODUCT != "All"
