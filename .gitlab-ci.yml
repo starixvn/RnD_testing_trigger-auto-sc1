@@ -10,4 +10,4 @@ testSedie:
     project: rnd/testing/mocha-playwright
     strategy: depend
   rules:
-    - if: $PRODUCT =~ /SEDIE/
+    - if: '$PRODUCT =~ /SEDIE/'
