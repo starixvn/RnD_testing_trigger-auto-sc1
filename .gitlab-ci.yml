@@ -1,5 +1,6 @@
 stages: 
   - testPhase1
+  - testPhase2
 
 testSedie:
   stage: testPhase1
