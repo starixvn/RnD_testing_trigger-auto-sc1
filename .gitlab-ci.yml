@@ -3,17 +3,6 @@ stages:
   - testPhase2
   - testPhase3
 
-
-testSerial:
-  stage: testPhase1
-  variables:
-    PRODUCT: "${PRODUCT}"
-  trigger: 
-    project: rnd/testing/mocha-playwright
-    strategy: depend
-  rules:
-    - if: $PRODUCT != "All"
-
 testSedie:
   stage: testPhase1
   variables:
@@ -22,6 +11,7 @@ testSedie:
     project: rnd/testing/mocha-playwright
     strategy: depend
   rules:
+    - if: 1$PRODUCT =~ /[^p]SEDIE/
     - if: $PRODUCT == "All"
 
 testVipSedie:
@@ -32,6 +22,7 @@ testVipSedie:
     project: rnd/testing/mocha-playwright
     strategy: depend
   rules:
+    - if: 1$PRODUCT =~ /VIPSEDIE/
     - if: $PRODUCT == "All"
 
 testBigSmall:
@@ -42,6 +33,7 @@ testBigSmall:
     project: rnd/testing/mocha-playwright
     strategy: depend
   rules:
+    - if: 1$PRODUCT =~ /[^o]BIGSMALL/
     - if: $PRODUCT == "All"
 
 testTurboBigSmall:
@@ -52,6 +44,7 @@ testTurboBigSmall:
     project: rnd/testing/mocha-playwright
     strategy: depend
   rules:
+    - if: 1$PRODUCT =~ /TURBOBIGSMALL/
     - if: $PRODUCT == "All"
 
 # testMiniSedie:
