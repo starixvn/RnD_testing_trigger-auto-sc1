@@ -6,6 +6,8 @@ testSedie:
   stage: testMain
   variables:
     PRODUCT: Sedie
+    Mode: $Mode
+    env: $env
   trigger: 
     project: rnd/testing/mocha-playwright
     strategy: depend
@@ -16,6 +18,8 @@ testVipSedie:
   stage: testMain
   variables:
     PRODUCT: VIpSedie
+    Mode: $Mode
+    env: $env
   trigger: 
     project: rnd/testing/mocha-playwright
     strategy: depend
@@ -26,6 +30,8 @@ testBigSmall:
   stage: testMain
   variables:
     PRODUCT: BigSmall
+    Mode: $Mode
+    env: $env
   trigger: 
     project: rnd/testing/mocha-playwright
     strategy: depend
@@ -36,6 +42,8 @@ testTurboBigSmall:
   stage: testMain
   variables:
     PRODUCT: TurboBigSmall
+    Mode: $Mode
+    env: $env
   trigger: 
     project: rnd/testing/mocha-playwright
     strategy: depend
