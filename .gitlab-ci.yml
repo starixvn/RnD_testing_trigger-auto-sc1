@@ -12,7 +12,7 @@ testSedie:
     project: rnd/testing/mocha-playwright
     strategy: depend
   rules:
-    - if: "$PRODUCTS =~ /[^p]SEDIE/"
+    - if: $PRODUCT =~ /[^p]SEDIE/
 
     # - if: $PRODUCTS == "SAll"
 
