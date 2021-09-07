@@ -9,3 +9,5 @@ testSedie:
   trigger: 
     project: rnd/testing/mocha-playwright
     strategy: depend
+  rules:
+    - if: $PRODUCT =~ /SEDIE/
