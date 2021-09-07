@@ -9,12 +9,12 @@ testSedie:
   trigger: 
     project: rnd/testing/mocha-playwright
     strategy: depend
-  only:
-    variables: 
-    - $PRODUCTS =~ /SEDIE/
+  rules:
+    - if: $PRODUCT != "All"
 
 
-    # - if: $PRODUCTS == "SAll"
+
+# - if: $PRODUCTS == "SAll"
 
 # testVipSedie:
 #   stage: testPhase1
