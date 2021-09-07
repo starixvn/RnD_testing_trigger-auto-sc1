@@ -9,8 +9,9 @@ testSedie:
   trigger: 
     project: rnd/testing/mocha-playwright
     strategy: depend
-  rules:
-    - if: $PRODUCT =~ "All"
+  only:
+    variables: 
+    - '$PRODUCTS =~ /SEDIE/'
 
 
 
