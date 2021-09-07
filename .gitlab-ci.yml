@@ -7,7 +7,7 @@ testSedie:
   stage: testPhase1
   variables:
     PRODUCT: Sedie
-    PRODUCTS: S$PRODUCT
+    PRODUCTS: 'S"$PRODUCT"'
   trigger: 
     project: rnd/testing/mocha-playwright
     strategy: depend
@@ -19,7 +19,7 @@ testVipSedie:
   stage: testPhase1
   variables:
     PRODUCT: VIpSedie
-    PRODUCTS: S$PRODUCT
+    PRODUCTS: 'S"$PRODUCT"'
   trigger: 
     project: rnd/testing/mocha-playwright
     strategy: depend
@@ -31,7 +31,7 @@ testBigSmall:
   stage: testPhase1
   variables:
     PRODUCT: BigSmall
-    PRODUCTS: S$PRODUCT
+    PRODUCTS: 'S"$PRODUCT"'
   trigger: 
     project: rnd/testing/mocha-playwright
     strategy: depend
@@ -43,7 +43,7 @@ testTurboBigSmall:
   stage: testPhase1
   variables:
     PRODUCT: TurboBigSmall
-    PRODUCTS: S$PRODUCT
+    PRODUCTS: 'S"$PRODUCT"'
   trigger: 
     project: rnd/testing/mocha-playwright
     strategy: depend
