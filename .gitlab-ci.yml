@@ -7,45 +7,49 @@ testSedie:
   stage: testPhase1
   variables:
     PRODUCT: Sedie
+    PRODUCTS: S$PRODUCT
   trigger: 
     project: rnd/testing/mocha-playwright
     strategy: depend
   rules:
-    - if: 1$PRODUCT =~ /[^p]SEDIE/
-    - if: $PRODUCT == "All"
+    - if: $PRODUCTS =~ /[^p]SEDIE/
+    - if: $PRODUCTS == "SAll"
 
 testVipSedie:
   stage: testPhase1
   variables:
     PRODUCT: VIpSedie
+    PRODUCTS: S$PRODUCT
   trigger: 
     project: rnd/testing/mocha-playwright
     strategy: depend
   rules:
-    - if: 1$PRODUCT =~ /VIPSEDIE/
-    - if: $PRODUCT == "All"
+    - if: $PRODUCTS =~ /VIPSEDIE/
+    - if: $PRODUCTS == "SAll"
 
 testBigSmall:
   stage: testPhase1
   variables:
     PRODUCT: BigSmall
+    PRODUCTS: S$PRODUCT
   trigger: 
     project: rnd/testing/mocha-playwright
     strategy: depend
   rules:
-    - if: 1$PRODUCT =~ /[^o]BIGSMALL/
-    - if: $PRODUCT == "All"
+    - if: $PRODUCTS =~ /[^o]BIGSMALL/
+    - if: $PRODUCTS == "SAll"
 
 testTurboBigSmall:
   stage: testPhase1
   variables:
     PRODUCT: TurboBigSmall
+    PRODUCTS: S$PRODUCT
   trigger: 
     project: rnd/testing/mocha-playwright
     strategy: depend
   rules:
-    - if: 1$PRODUCT =~ /TURBOBIGSMALL/
-    - if: $PRODUCT == "All"
+    - if: $PRODUCTS =~ /TURBOBIGSMALL/
+    - if: $PRODUCTS == "SAll"
 
 # testMiniSedie:
 #   stage: testPhase1
