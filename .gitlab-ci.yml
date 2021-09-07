@@ -10,42 +10,4 @@ testSedie:
     project: rnd/testing/mocha-playwright
     strategy: depend
   rules:
-    - if: '"S{{PRODUCT}}" =~ /SEDIE/'
-
-# - if: $PRODUCTS == "SAll"
-
-# testVipSedie:
-#   stage: testPhase1
-#   variables:
-#     PRODUCT: VIpSedie
-#     PRODUCTS: 'S"$PRODUCT"'
-#   trigger: 
-#     project: rnd/testing/mocha-playwright
-#     strategy: depend
-#   rules:
-#     - if: $PRODUCTS =~ /VIPSEDIE/
-#     - if: $PRODUCTS == "SAll"
-
-# testBigSmall:
-#   stage: testPhase1
-#   variables:
-#     PRODUCT: BigSmall
-#     PRODUCTS: 'S"$PRODUCT"'
-#   trigger: 
-#     project: rnd/testing/mocha-playwright
-#     strategy: depend
-#   rules:
-#     - if: $PRODUCTS =~ /[^o]BIGSMALL/
-#     - if: $PRODUCTS == "SAll"
-
-# testTurboBigSmall:
-#   stage: testPhase1
-#   variables:
-#     PRODUCT: TurboBigSmall
-#     PRODUCTS: 'S"$PRODUCT"'
-#   trigger: 
-#     project: rnd/testing/mocha-playwright
-#     strategy: depend
-#   rules:
-#     - if: $PRODUCTS =~ /TURBOBIGSMALL/
-#     - if: $PRODUCTS == "SAll"
+    - if: '"S$PRODUCT" =~ /SEDIE/'
