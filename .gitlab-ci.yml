@@ -11,3 +11,34 @@ testSedie:
     strategy: depend
   rules:
     - if: '$PRODUCT =~ /(^SEDIE|[^P]SEDIE)/'
+    - if: $PRODUCT == "All"
+testVipSedie:
+  stage: testPhase1
+  variables:
+    PRODUCT: VIpSedie
+  trigger: 
+    project: rnd/testing/mocha-playwright
+    strategy: depend
+  rules:
+    - if: '$PRODUCT =~ /VIPSEDIE/'
+    - if: $PRODUCT == "All"
+testBigSmall:
+  stage: testPhase1
+  variables:
+    PRODUCT: BigSmall
+  trigger: 
+    project: rnd/testing/mocha-playwright
+    strategy: depend
+  rules:
+    - if: '$PRODUCT =~ /(^BIGSMALL|[^O]BIGSMALL)/'
+    - if: $PRODUCT == "All"
+testTurboBigSmall:
+  stage: testPhase2
+  variables:
+    PRODUCT: TurboBigSmall
+  trigger: 
+    project: rnd/testing/mocha-playwright
+    strategy: depend
+  rules:
+    - if: '$PRODUCT =~ /TURBOBIGSMALL/'
+    - if: $PRODUCT == "All"
