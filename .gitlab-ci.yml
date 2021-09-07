@@ -7,12 +7,11 @@ testSedie:
   stage: testPhase1
   variables:
     PRODUCT: Sedie
-    PRODUCTS: 'S"$PRODUCT"'
   trigger: 
     project: rnd/testing/mocha-playwright
     strategy: depend
   rules:
-    - if: $PRODUCT =~ /[^p]SEDIE/
+    - if: $PRODUCT =~ /SEDIE/
 
     # - if: $PRODUCTS == "SAll"
 
