@@ -1,9 +1,9 @@
 stages: 
-  - testPhase1
-  - testPhase2
+  - testMain
+  - testSub1
 
 testSedie:
-  stage: testPhase1
+  stage: testMain
   variables:
     PRODUCT: Sedie
   trigger: 
@@ -13,7 +13,7 @@ testSedie:
     - if: '$PRODUCT =~ /(^SEDIE|[^P]SEDIE)/'
     - if: $PRODUCT == "All"
 testVipSedie:
-  stage: testPhase1
+  stage: testMain
   variables:
     PRODUCT: VIpSedie
   trigger: 
@@ -23,7 +23,7 @@ testVipSedie:
     - if: '$PRODUCT =~ /VIPSEDIE/'
     - if: $PRODUCT == "All"
 testBigSmall:
-  stage: testPhase1
+  stage: testMain
   variables:
     PRODUCT: BigSmall
   trigger: 
@@ -33,7 +33,7 @@ testBigSmall:
     - if: '$PRODUCT =~ /(^BIGSMALL|[^O]BIGSMALL)/'
     - if: $PRODUCT == "All"
 testTurboBigSmall:
-  stage: testPhase2
+  stage: testMain
   variables:
     PRODUCT: TurboBigSmall
   trigger: 
