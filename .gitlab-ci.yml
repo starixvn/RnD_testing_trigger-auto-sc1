@@ -10,7 +10,7 @@ testSedie:
     project: rnd/testing/mocha-playwright
     strategy: depend
   rules:
-    - if: $PRODUCT != "All"
+    - if: $PRODUCT =~ "All"
 
 
 
