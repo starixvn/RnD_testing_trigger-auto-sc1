@@ -11,3 +11,4 @@ testSedie:
     strategy: depend
   rules:
     - if: '$PRODUCT =~ /SEDIE/'
+      when: always
