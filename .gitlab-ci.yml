@@ -13,7 +13,7 @@ testSedie:
     strategy: depend
   rules:
     - if: '$PRODUCT =~ /(^SEDIE|[^PI]SEDIE)/'
-    - if: $PRODUCT == "All"
+    - if: $PRODUCT == "ALL"
 testVipSedie:
   stage: testMain
   variables:
@@ -25,7 +25,7 @@ testVipSedie:
     strategy: depend
   rules:
     - if: '$PRODUCT =~ /VIPSEDIE/'
-    - if: $PRODUCT == "All"
+    - if: $PRODUCT == "ALL"
 testMiniSedie:
   stage: testMain
   variables:
@@ -37,7 +37,7 @@ testMiniSedie:
     strategy: depend
   rules:
     - if: '$PRODUCT =~ /(^MINISEDIE|[^P]MINISEDIE)/'
-    - if: $PRODUCT == "All"    
+    - if: $PRODUCT == "ALL"    
 testBigSmall:
   stage: testMain
   variables:
@@ -49,7 +49,7 @@ testBigSmall:
     strategy: depend
   rules:
     - if: '$PRODUCT =~ /(^BIGSMALL|[^O]BIGSMALL)/'
-    - if: $PRODUCT == "All"
+    - if: $PRODUCT == "ALL"
 testTurboBigSmall:
   stage: testMain
   variables:
@@ -61,4 +61,4 @@ testTurboBigSmall:
     strategy: depend
   rules:
     - if: '$PRODUCT =~ /TURBOBIGSMALL/'
-    - if: $PRODUCT == "All"
+    - if: $PRODUCT == "ALL"
