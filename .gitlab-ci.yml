@@ -38,6 +38,18 @@ testMiniSedie:
   rules:
     - if: '$PRODUCT =~ /(^MINISEDIE|[^P]MINISEDIE)/'
     - if: $PRODUCT == "ALL"    
+testSedieWar:
+  stage: testMain
+  variables:
+    PRODUCT: SedieWar
+    Mode: $Mode
+    env: $env
+  trigger: 
+    project: rnd/testing/mocha-playwright
+    strategy: depend
+  rules:
+    - if: '$PRODUCT =~ /(^SEDIEWAR|[^P]SEDIEWAR)/'
+    - if: $PRODUCT == "ALL"        
 testBigSmall:
   stage: testMain
   variables:
