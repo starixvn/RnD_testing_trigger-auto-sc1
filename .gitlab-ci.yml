@@ -12,7 +12,7 @@ build:
     - >
       for i in $LIST_GAME ; do
         listGame=${i,,}
-        echo $listGame
+        # echo $listGame
         echo "123"
         # for g in $PRODUCT ; do
         #     product="${g,,}"
