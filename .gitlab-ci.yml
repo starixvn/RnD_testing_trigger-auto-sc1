@@ -6,9 +6,14 @@ stages:
 
 build:
   stage: testMain1
+  tags:
+    - docker-automation-test
   variables:
     LIST_GAME: "Sedie MiniSedie VIpSedie"
   script:
+    -  curl http://stedolan.github.io/jq/download/linux64/jq -o ~/bin/jq
+    -  chmod a+x ~/bin/jq
+    -  curl --header "PRIVATE-TOKEN: vuLfNcDKeAFFXnd43SFa" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length
     - >
       for i in $LIST_GAME ; do
         listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
