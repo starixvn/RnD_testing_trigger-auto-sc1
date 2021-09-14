@@ -6,7 +6,7 @@ stages:
 
 build:
   stage: testMain1
-  variable:
+  variables:
     LIST_GAME: "Sedie MiniSedie VIpSedie"
   script:
     - >
