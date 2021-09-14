@@ -33,6 +33,7 @@ build:
                   else
                     sleep 20
                   fi
+                  sleep 5
                 done
             fi
         done
