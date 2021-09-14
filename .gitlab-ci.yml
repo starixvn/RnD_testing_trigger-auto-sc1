@@ -1,15 +1,12 @@
 stages: 
-  - testMain1
-  - testMain2
-  - testSub1
-  - testSub2
+  - testMain
 
 build:
-  stage: testMain1
+  stage: testMain
   tags:
     - docker-automation-test
   variables:
-    LIST_GAME: "Sedie MiniSedie VIpSedie BigSmall"
+    LIST_GAME: "Sedie VIpSedie TurboBigSmall BigSmall MiniSedie BigSmallSicBo BlackJack SedieWar TurboOddEven"
   script:
     - apk add jq
     # - curl http://stedolan.github.io/jq/download/linux64/jq -o root/bin/jq && chmod a+x root/bin/jq
