@@ -1,3 +1,4 @@
+image: registry.gitlab.com/finestructure/pipeline-trigger
 stages: 
   - testMain1
   - testMain2
@@ -17,7 +18,8 @@ build:
             if [ "$product" == "$listGame" ] || [ "$product" == "all" ] ;
             then
                 echo $i
-                curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
+                # curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
+                - trigger -a "$API_TOKEN" -p "0f21176112256c893237283ca56f7b" -t master 253
             fi
         done
       done
