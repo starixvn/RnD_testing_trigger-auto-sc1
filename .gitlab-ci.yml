@@ -9,22 +9,12 @@ build:
   tags:
     - docker-automation-test
   variables:
-    LIST_GAME: "Sedie MiniSedie VIpSedie"
+    LIST_GAME: "Sedie MiniSedie VIpSedie BigSmall"
   script:
     - apk add jq
     # - curl http://stedolan.github.io/jq/download/linux64/jq -o root/bin/jq && chmod a+x root/bin/jq
     # - curl -H "PRIVATE-TOKEN:vuLfNcDKeAFFXnd43SFa" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running"
     - curl --header "PRIVATE-TOKEN:vuLfNcDKeAFFXnd43SFa" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length
-    - >
-      isReady=0
-      while [ $isReady == 1 ] ; do
-        sleep 10
-        countStatus=$(curl --header "PRIVATE-TOKEN:vuLfNcDKeAFFXnd43SFa" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length)
-        if [ $countStatus <= 3 ] ;
-        then
-          isReady=1
-        fi
-      done
     - >
       for i in $LIST_GAME ; do
         listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
@@ -32,7 +22,15 @@ build:
             product=$(echo ${g} | tr '[:upper:]' '[:lower:]')
             if [ "$product" == "$listGame" ] || [ "$product" == "all" ] ;
             then
-                echo $i
+                isReady=0
+                while [[ $isReady == 0 ]] ; do
+                  sleep 10
+                  countStatus=$(curl --header "PRIVATE-TOKEN:vuLfNcDKeAFFXnd43SFa" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length)
+                  if [ $countStatus -gt 3 ] ;
+                  then
+                    isReady=1
+                  fi
+                done
                 curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
             fi
         done
