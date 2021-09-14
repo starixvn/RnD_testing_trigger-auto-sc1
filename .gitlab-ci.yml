@@ -11,7 +11,7 @@ build:
   script:
     - >
       for i in $LIST_GAME ; do
-        listGame=${i,,}
+        listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
         # echo $listGame
         echo "123"
         # for g in $PRODUCT ; do
