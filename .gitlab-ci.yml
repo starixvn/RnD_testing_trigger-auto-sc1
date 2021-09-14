@@ -1,76 +1,101 @@
 stages: 
-  - testMain
+  - testMain1
+  - testMain2
   - testSub1
+  - testSub2
 
-testSedie:
-  stage: testMain
+build:
+  stage: testMain1
   variables:
-    PRODUCT: Sedie
-    Mode: $Mode
-    env: $env
-  trigger: 
-    project: rnd/testing/mocha-playwright
-    strategy: depend
-  rules:
-    - if: '$PRODUCT =~ /(^SEDIE|[^PI]SEDIE)/'
-    - if: $PRODUCT == "ALL"
-testVipSedie:
-  stage: testMain
-  variables:
-    PRODUCT: VIpSedie
-    Mode: $Mode
-    env: $env
-  trigger: 
-    project: rnd/testing/mocha-playwright
-    strategy: depend
-  rules:
-    - if: '$PRODUCT =~ /VIPSEDIE/'
-    - if: $PRODUCT == "ALL"
-testMiniSedie:
-  stage: testMain
-  variables:
-    PRODUCT: MiniSedie
-    Mode: $Mode
-    env: $env
-  trigger: 
-    project: rnd/testing/mocha-playwright
-    strategy: depend
-  rules:
-    - if: '$PRODUCT =~ /(^MINISEDIE|[^P]MINISEDIE)/'
-    - if: $PRODUCT == "ALL"    
-testSedieWar:
-  stage: testMain
-  variables:
-    PRODUCT: SedieWar
-    Mode: $Mode
-    env: $env
-  trigger: 
-    project: rnd/testing/mocha-playwright
-    strategy: depend
-  rules:
-    - if: '$PRODUCT =~ /(^SEDIEWAR|[^P]SEDIEWAR)/'
-    - if: $PRODUCT == "ALL"        
-testBigSmall:
-  stage: testMain
-  variables:
-    PRODUCT: BigSmall
-    Mode: $Mode
-    env: $env
-  trigger: 
-    project: rnd/testing/mocha-playwright
-    strategy: depend
-  rules:
-    - if: '$PRODUCT =~ /(^BIGSMALL|[^O]BIGSMALL)/'
-    - if: $PRODUCT == "ALL"
-testTurboBigSmall:
-  stage: testMain
-  variables:
-    PRODUCT: TurboBigSmall
-    Mode: $Mode
-    env: $env
-  trigger: 
-    project: rnd/testing/mocha-playwright
-    strategy: depend
-  rules:
-    - if: '$PRODUCT =~ /TURBOBIGSMALL/'
-    - if: $PRODUCT == "ALL"
+    LIST_GAME: "Sedie MiniSedie VIpSedie"
+  script:
+    - >
+      for i in $LIST_GAME ; do
+        for g in $PRODUCT ; do
+            echo "Hello $i"
+            echo "Hello $g"
+            if [ ${g,,} = ${i,,} ]
+            then
+                #curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
+            fi
+        done
+      done
+
+
+
+# stages: 
+#   - testMain
+#   - testSub1
+
+# testSedie:
+#   stage: testMain
+#   variables:
+#     PRODUCT: Sedie
+#     Mode: $Mode
+#     env: $env
+#   trigger: 
+#     project: rnd/testing/mocha-playwright
+#     strategy: depend
+#   rules:
+#     - if: '$PRODUCT =~ /(^SEDIE|[^PI]SEDIE)/'
+#     - if: $PRODUCT == "ALL"
+# testVipSedie:
+#   stage: testMain
+#   variables:
+#     PRODUCT: VIpSedie
+#     Mode: $Mode
+#     env: $env
+#   trigger: 
+#     project: rnd/testing/mocha-playwright
+#     strategy: depend
+#   rules:
+#     - if: '$PRODUCT =~ /VIPSEDIE/'
+#     - if: $PRODUCT == "ALL"
+# testMiniSedie:
+#   stage: testMain
+#   variables:
+#     PRODUCT: MiniSedie
+#     Mode: $Mode
+#     env: $env
+#   trigger: 
+#     project: rnd/testing/mocha-playwright
+#     strategy: depend
+#   rules:
+#     - if: '$PRODUCT =~ /(^MINISEDIE|[^P]MINISEDIE)/'
+#     - if: $PRODUCT == "ALL"    
+# testSedieWar:
+#   stage: testMain
+#   variables:
+#     PRODUCT: SedieWar
+#     Mode: $Mode
+#     env: $env
+#   trigger: 
+#     project: rnd/testing/mocha-playwright
+#     strategy: depend
+#   rules:
+#     - if: '$PRODUCT =~ /(^SEDIEWAR|[^P]SEDIEWAR)/'
+#     - if: $PRODUCT == "ALL"        
+# testBigSmall:
+#   stage: testMain
+#   variables:
+#     PRODUCT: BigSmall
+#     Mode: $Mode
+#     env: $env
+#   trigger: 
+#     project: rnd/testing/mocha-playwright
+#     strategy: depend
+#   rules:
+#     - if: '$PRODUCT =~ /(^BIGSMALL|[^O]BIGSMALL)/'
+#     - if: $PRODUCT == "ALL"
+# testTurboBigSmall:
+#   stage: testMain
+#   variables:
+#     PRODUCT: TurboBigSmall
+#     Mode: $Mode
+#     env: $env
+#   trigger: 
+#     project: rnd/testing/mocha-playwright
+#     strategy: depend
+#   rules:
+#     - if: '$PRODUCT =~ /TURBOBIGSMALL/'
+#     - if: $PRODUCT == "ALL"
