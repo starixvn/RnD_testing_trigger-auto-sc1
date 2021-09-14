@@ -11,11 +11,11 @@ build:
   script:
     - >
       for i in $LIST_GAME ; do
+        echo $i | tr [:lower:] >> listGame
+        echo $listGame
         for g in $PRODUCT ; do
-            echo $i | tr [:lower:] >> listGame
             echo $g | tr [:lower:] >> product
             echo $product
-            echo $listGame
             if [ "$product" = "$listGame" ];
             then
                 echo $i
@@ -23,6 +23,8 @@ build:
             fi
         done
       done
+
+
 
 
 
