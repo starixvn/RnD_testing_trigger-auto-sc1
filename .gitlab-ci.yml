@@ -12,14 +12,11 @@ build:
     - >
       for i in $LIST_GAME ; do
         listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
-        echo $listGame
         for g in $PRODUCT ; do
             product=$(echo ${g} | tr '[:upper:]' '[:lower:]')
-            echo $product
-            echo $g
-            if [ "$product" == "$listGame" ];
+            if [ "$product" == "$listGame" ] || ["$product"] == "all"] ;
             then
-                echo $listGame
+                echo $i
                 #curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
             fi
         done
