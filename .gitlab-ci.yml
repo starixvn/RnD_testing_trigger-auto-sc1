@@ -16,6 +16,7 @@ build:
         for g in $PRODUCT ; do
             product=$(echo ${g} | tr '[:upper:]' '[:lower:]')
             echo $product
+            echo $g
             if [ "$product" == "$listGame" ];
             then
                 echo $listGame
