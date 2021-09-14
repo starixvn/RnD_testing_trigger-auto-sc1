@@ -6,7 +6,7 @@ stages:
 
 build:
   stage: testMain1
-  variables:
+  variable:
     LIST_GAME: "Sedie MiniSedie VIpSedie"
   script:
     - >
@@ -14,13 +14,17 @@ build:
         for g in $PRODUCT ; do
             echo $i | tr [:lower:] >> listGame
             echo $g | tr [:lower:] >> product
-            if [ "$product" == "$listGame" ];
+            echo $product
+            echo $listGame
+            if [ "$product" = "$listGame" ];
             then
                 echo $i
                 #curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
             fi
         done
       done
+
+
 
 
 
