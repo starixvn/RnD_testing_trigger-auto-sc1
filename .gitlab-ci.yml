@@ -9,9 +9,6 @@ build:
     LIST_GAME: "Sedie VIpSedie TurboBigSmall BigSmall MiniSedie BigSmallSicBo BlackJack SedieWar TurboOddEven"
   script:
     - apk add jq
-    # - curl http://stedolan.github.io/jq/download/linux64/jq -o root/bin/jq && chmod a+x root/bin/jq
-    # - curl -H "PRIVATE-TOKEN:vuLfNcDKeAFFXnd43SFa" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running"
-    - curl --header "PRIVATE-TOKEN:vuLfNcDKeAFFXnd43SFa" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length
     - >
       for i in $LIST_GAME ; do
         listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
@@ -26,7 +23,7 @@ build:
                   if [ $countStatus -lt 3 ] ;
                   then
                     isReady=1
-                    curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
+                    curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i -F variables[env]=$env https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
                   else
                     sleep 20
                   fi
