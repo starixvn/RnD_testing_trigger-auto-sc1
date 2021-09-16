@@ -23,7 +23,7 @@ build:
                   if [ $countStatus -lt 3 ] ;
                   then
                     isReady=1
-                    curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i -F variables[env]=$env https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
+                    curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i -F variables[env]=$env -F variables[Mode]=$Mode https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
                   else
                     sleep 20
                   fi
