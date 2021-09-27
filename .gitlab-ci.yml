@@ -10,9 +10,10 @@ build:
   script:
     - apk add jq
     - >
+      IFS=',' read -r -a arr <<< "$PRODUCT"
       for i in $LIST_GAME ; do
         listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
-        for g in $PRODUCT ; do
+        for g in ${arr[@]} ; do
             product=$(echo ${g} | tr '[:upper:]' '[:lower:]')
             if [ "$product" == "$listGame" ] || [ "$product" == "all" ] ;
             then
