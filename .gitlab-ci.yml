@@ -9,8 +9,8 @@ build:
     LIST_GAME: "Sedie VIpSedie TurboBigSmall BigSmall MiniSedie BigSmallSicBo BlackJack SedieWar TurboOddEven"
   script:
     - apk add jq
+    - arr=${PRODUCT//,/ }
     - >
-      arr=${PRODUCT//,/ }
       for i in $LIST_GAME ; do
         listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
         for g in ${arr[@]} ; do
