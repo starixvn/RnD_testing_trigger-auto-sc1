@@ -9,8 +9,8 @@ build:
     LIST_GAME: "Sedie VIpSedie TurboBigSmall BigSmall MiniSedie BigSmallSicBo BlackJack SedieWar TurboOddEven"
   script:
     - apk add jq
-    - arr=${PRODUCT//,/ }
     - >
+      arr=${PRODUCT//,/ }
       for i in $LIST_GAME ; do
         listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
         for g in ${arr[@]} ; do
@@ -34,89 +34,3 @@ build:
         done
       done
 
-
-
-
-
-
-
-
-
-
-
-# stages: 
-#   - testMain
-#   - testSub1
-
-# testSedie:
-#   stage: testMain
-#   variables:
-#     PRODUCT: Sedie
-#     Mode: $Mode
-#     env: $env
-#   trigger: 
-#     project: rnd/testing/mocha-playwright
-#     strategy: depend
-#   rules:
-#     - if: '$PRODUCT =~ /(^SEDIE|[^PI]SEDIE)/'
-#     - if: $PRODUCT == "ALL"
-# testVipSedie:
-#   stage: testMain
-#   variables:
-#     PRODUCT: VIpSedie
-#     Mode: $Mode
-#     env: $env
-#   trigger: 
-#     project: rnd/testing/mocha-playwright
-#     strategy: depend
-#   rules:
-#     - if: '$PRODUCT =~ /VIPSEDIE/'
-#     - if: $PRODUCT == "ALL"
-# testMiniSedie:
-#   stage: testMain
-#   variables:
-#     PRODUCT: MiniSedie
-#     Mode: $Mode
-#     env: $env
-#   trigger: 
-#     project: rnd/testing/mocha-playwright
-#     strategy: depend
-#   rules:
-#     - if: '$PRODUCT =~ /(^MINISEDIE|[^P]MINISEDIE)/'
-#     - if: $PRODUCT == "ALL"    
-# testSedieWar:
-#   stage: testMain
-#   variables:
-#     PRODUCT: SedieWar
-#     Mode: $Mode
-#     env: $env
-#   trigger: 
-#     project: rnd/testing/mocha-playwright
-#     strategy: depend
-#   rules:
-#     - if: '$PRODUCT =~ /(^SEDIEWAR|[^P]SEDIEWAR)/'
-#     - if: $PRODUCT == "ALL"        
-# testBigSmall:
-#   stage: testMain
-#   variables:
-#     PRODUCT: BigSmall
-#     Mode: $Mode
-#     env: $env
-#   trigger: 
-#     project: rnd/testing/mocha-playwright
-#     strategy: depend
-#   rules:
-#     - if: '$PRODUCT =~ /(^BIGSMALL|[^O]BIGSMALL)/'
-#     - if: $PRODUCT == "ALL"
-# testTurboBigSmall:
-#   stage: testMain
-#   variables:
-#     PRODUCT: TurboBigSmall
-#     Mode: $Mode
-#     env: $env
-#   trigger: 
-#     project: rnd/testing/mocha-playwright
-#     strategy: depend
-#   rules:
-#     - if: '$PRODUCT =~ /TURBOBIGSMALL/'
-#     - if: $PRODUCT == "ALL"
