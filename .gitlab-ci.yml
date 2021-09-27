@@ -13,7 +13,7 @@ build:
     - >
       for i in $LIST_GAME ; do
         listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
-        for g in ${arr[@]} ; do
+        for g in $arr ; do
             product=$(echo ${g} | tr '[:upper:]' '[:lower:]')
             if [ "$product" == "$listGame" ] || [ "$product" == "all" ] ;
             then
