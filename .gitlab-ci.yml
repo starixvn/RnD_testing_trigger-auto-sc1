@@ -31,7 +31,6 @@ build:
                     sleep 10
                     echo "getlastestpipeline"
                     latestpipeline=$(curl --header "PRIVATE-TOKEN:vuLfNcDKeAFFXnd43SFa" "https://git3.nexdev.net/api/v4/projects/253/pipelines/latest" | jq length))
-                    echo "$latestpipeline"
                    else
                     sleep 20
                   fi
