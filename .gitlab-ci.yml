@@ -11,6 +11,8 @@ build:
     - apk add jq
     - arr=${PRODUCT//,/ }
     - >
+      pipelineid=()
+      pipelinestatus=()
       for i in $LIST_GAME ; do
         listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
         for g in $arr ; do
@@ -26,6 +28,12 @@ build:
                     isReady=1
                     echo "$i"
                     curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i -F variables[env]=$env -F variables[parentTrigger]=$CI_PIPELINE_ID -F variables[Mode]=$Mode https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
+                    sleep 10 # wait for pipeline start
+					          latestpipeline=$(curl --header "PRIVATE-TOKEN:vuLfNcDKeAFFXnd43SFa" "https://git3.nexdev.net/api/v4/projects/253/pipelines/latest")
+					          id=$(echo "$latestpipeline" | cut -d ':' -f2)
+				          	id="${id%,*}"
+				          	echo "$id"	
+				          	pipelineid+=($id)
                   else
                     sleep 20
                   fi
@@ -34,4 +42,23 @@ build:
             fi
         done
       done
+
+#GET PIPELINE RESULT
+for value in "${pipelineid[@]}"
+do
+  preport=$(curl --header "PRIVATE-TOKEN:vuLfNcDKeAFFXnd43SFa" "https://git3.nexdev.net/api/v4/projects/253/pipelines/$value")
+	pstatus=$(echo "$preport" | cut -d ':' -f5)
+	pstatus="${pstatus%,*}"
+	echo "$pstatus"	
+	pipelinestatus+=($pstatus)
+done
+
+#check final job result
+if printf '%s\n' "${pipelinestatus[@]}" | grep '^failed'; then
+    echo "Failed"
+	exit status 1
+else
+    echo "Passed"
+	exit status 0
+fi
 
