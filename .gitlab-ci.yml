@@ -42,20 +42,4 @@ build:
             fi
         done
       done
-
-      for value in "${pipelineid[@]}"  ; do
-        preport=$(curl --header "PRIVATE-TOKEN:vuLfNcDKeAFFXnd43SFa" "https://git3.nexdev.net/api/v4/projects/253/pipelines/$value")
-      	pstatus=$(echo "$preport" | cut -d ':' -f5)
-        pstatus="${pstatus%,*}"
-        echo "$pstatus"	
-      	pipelinestatus+=($pstatus)
-      done
-
-      if printf '%s\n' "${pipelinestatus[@]}" | grep '^failed'; then
-        echo "Failed"
-        exit status 1
-      else
-        echo "Passed"
-         exit status 0
-      fi
-
+      echo "$pipelineid"
