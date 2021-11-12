@@ -43,4 +43,3 @@ build:
             fi
         done
       done
-      echo "$pipelineid"
