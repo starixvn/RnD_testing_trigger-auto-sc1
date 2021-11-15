@@ -32,7 +32,7 @@ build:
                     id=$(echo "$latestpipeline" | cut -d ':' -f2)
                     id="${id%,*}"
                     echo "$id"	
-                    echo "${pipelineid[*]}"
+                    echo "${pipelineid[@]}"
                   else
                     sleep 20
                   fi
