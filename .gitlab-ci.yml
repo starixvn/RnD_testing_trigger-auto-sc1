@@ -11,6 +11,8 @@ build:
     - apk add jq
     - arr=${PRODUCT//,/ }
     - >
+      pipelineid=()
+      pipelinestatus=()
       for i in $LIST_GAME ; do
         listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
         for g in $arr ; do
