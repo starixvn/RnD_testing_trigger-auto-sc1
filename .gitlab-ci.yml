@@ -6,12 +6,12 @@ build:
   tags:
     - docker-automation-test
   variables:
-    pipelineid: "pipelineid"
-    pipelinestatus: "pipelinestatus"
     LIST_GAME: "Sedie VIpSedie TurboBigSmall BigSmall MiniSedie BigSmallSicBo BlackJack SedieWar TurboOddEven DragonTiger KenoProMax VipFishPrawnCrab VipBaccarat ThreeCards Lottery FourGuardians SpecialSedie FishPrawnCrab HeroesSlot Roulette"
   script:
     - apk add jq
     - arr=${PRODUCT//,/ }
+    - pipelineid=()
+    - pipelinestatus=()
     - >
       for i in $LIST_GAME ; do
         listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
