@@ -30,7 +30,7 @@ build:
                     curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i -F variables[env]=$env -F variables[parentTrigger]=$CI_PIPELINE_ID -F variables[Mode]=$Mode https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
                     sleep 10
                     latestpipeline=$(curl --header "PRIVATE-TOKEN:vuLfNcDKeAFFXnd43SFa" "https://git3.nexdev.net/api/v4/projects/253/pipelines/latest" | jq length)
-                    id=$(echo "$latestpipeline" | cut -d ':' -f2)
+                    #id=$(echo "$latestpipeline" | cut -d ':' -f2)
                     #id="${id%,*}"
                     #echo "$id"	
                     #pipelineid+="$id"
