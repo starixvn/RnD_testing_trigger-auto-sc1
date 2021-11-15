@@ -11,8 +11,8 @@ build:
     - apk add jq
     - arr=${PRODUCT//,/ }
     - >
-      pipelineid=()
-      pipelinestatus=()
+      pipelineid=(1)
+      pipelinestatus=(1)
       for i in $LIST_GAME ; do
         listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
         for g in $arr ; do
@@ -34,6 +34,7 @@ build:
                     id=$(echo "$latestpipeline" | cut -d ':' -f2)
                     id="${id%,*}"
                     echo "$id"	
+                    echo ${pipelineid[@]}
                   else
                     sleep 20
                   fi
