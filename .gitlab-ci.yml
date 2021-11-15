@@ -31,8 +31,8 @@ build:
                     sleep 10
                     latestpipeline=$(curl --header "PRIVATE-TOKEN:vuLfNcDKeAFFXnd43SFa" "https://git3.nexdev.net/api/v4/projects/253/pipelines/latest" | jq length)
                     id=$(echo "$latestpipeline" | cut -d ':' -f2)
-                    id="${id%,*}"
-                    echo "$id"	
+                    #id="${id%,*}"
+                    #echo "$id"	
                     #pipelineid+="$id"
                    else
                     sleep 20
