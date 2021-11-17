@@ -34,8 +34,19 @@ build:
             fi
         done
       done
+        iscompleted=0
+        while [[ $iscompleted == 0 ]] ; do
+                  countStatus1=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length)
+                  echo "$countStatus1"
+                  if [ $countStatus1 -lt 1 ] ; then
+                  iscompleted=1
         latestpipeline=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?per_page=${#PRODUCT}"  | jq -r '.[].status')    
-        jobresult=0              
+        echo "${latestpipeline}"
+                else      
+                sleep 20
+                  fi
+             done
+                     jobresult=0              
                      for j in ${latestpipeline} ; do
                          if [ $j == "failed" ] ; then
                                 echo "Failed"                               
@@ -48,6 +59,5 @@ build:
                       if [ $jobresult == 0 ] ; then
                         exit 1
                       fi
-
 
 
