@@ -34,17 +34,19 @@ build:
             fi
         done
       done
-      resultpipeline=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?per_page=${#PRODUCT}"  | jq -r '.[].status')   
+      resultpipeline=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?per_page=${#PRODUCT}"  | jq -r '.[].status')  
         jobresult=0              
-        for j in ${resultpipeline} ; do
-          if [ $j == "failed" ] ; then
-            echo "Failed"                               
-            break
-          else    
-            echo "Passed"
-            jobresult=1
-          fi
-        done
-        if [ $jobresult == 0 ] ; then
-            exit 1
-        fi
+                     for j in ${latestpipeline} ; do
+                         if [ $j == "failed" ] ; then
+                                echo "Failed"                               
+                                break
+                          else    
+                                echo "Passed"
+                                jobresult=1
+                                                     fi
+                     done
+                      if [ $jobresult == 0 ] ; then
+                        exit 1
+                      fi
+
+
