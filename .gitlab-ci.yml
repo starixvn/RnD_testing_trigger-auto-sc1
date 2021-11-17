@@ -6,7 +6,7 @@ build:
   tags:
     - docker-automation-test
   variables:
-    LIST_GAME: "Sedie VIpSedie TurboBigSmall BigSmall MiniSedie BigSmallSicBo BlackJack SedieWar TurboOddEven DragonTiger KenoProMax VipFishPrawnCrab VipBaccarat ThreeCards Lottery FourGuardians SpecialSedie FishPrawnCrab Roulette"
+    LIST_GAME: "Sedie VIpSedie TurboBigSmall BigSmall MiniSedie BigSmallSicBo BlackJack SedieWar TurboOddEven DragonTiger KenoProMax VipFishPrawnCrab VipBaccarat ThreeCards Lottery FourGuardians SpecialSedie FishPrawnCrab HeroesSlot Roulette"
   script:
     - apk add jq
     - arr=${PRODUCT//,/ }
@@ -20,7 +20,7 @@ build:
             then
                 isReady=0
                 while [[ $isReady == 0 ]] ; do
-                  countStatus=$(curl --header "PRIVATE-TOKEN:vuLfNcDKeAFFXnd43SFa" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length)
+                  countStatus=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length)
                   echo "$countStatus"
                   echo "${pipelineid[1]}"
                   if [ $countStatus -lt 2 ] ;
@@ -28,11 +28,6 @@ build:
                     isReady=1
                     echo "$i"
                     curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i -F variables[env]=$env -F variables[parentTrigger]=$CI_PIPELINE_ID -F variables[Mode]=$Mode https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
-                    sleep 10
-                    latestpipeline=$(curl --header "PRIVATE-TOKEN:vuLfNcDKeAFFXnd43SFa" "https://git3.nexdev.net/api/v4/projects/253/pipelines/latest")
-                    id=$(echo "$latestpipeline" | cut -d ':' -f2)
-                    id="${id%,*}"
-                    echo "$id"	
                   else
                     sleep 20
                   fi
@@ -41,3 +36,17 @@ build:
             fi
         done
       done
+      resultpipeline=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?per_page=${#PRODUCT}"  | jq -r '.[].status')   
+        jobresult=0              
+                     for j in ${resultpipeline} ; do
+                         if [ $j == "failed" ] ; then
+                                echo "Failed"                               
+                                break
+                          else    
+                                echo "Passed"
+                                jobresult=1
+                                                     fi
+                     done
+                      if [ $jobresult == 0 ] ; then
+                        exit 1
+                      fi
