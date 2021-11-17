@@ -10,7 +10,6 @@ build:
   script:
     - apk add jq
     - arr=${PRODUCT//,/ }
-    - pipelineid=${PRODUCT//,/ }
     - >
       for i in $LIST_GAME ; do
         listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
