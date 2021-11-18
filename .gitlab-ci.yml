@@ -70,5 +70,5 @@ build:
                         else
                         echo "job passed"
                       fi
-
-
+  allow_failure: true
+      exit_codes:137
