@@ -69,5 +69,5 @@ build:
                         exit 1
                         else
                         echo "job passed"
-                        exit 1
+                        exit 0
                       fi
