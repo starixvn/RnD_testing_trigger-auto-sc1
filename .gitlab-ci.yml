@@ -44,9 +44,6 @@ build:
                        totalgames=$(echo -n "$LIST_GAME" | wc -w)
                       latestpipeline=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?per_page=${totalgames}"  | jq -r '.[].status') 
                       else
-                      echo "khong phai all"
-                       totalgames=$(echo -n "$PRODUCT" | wc -w)
-                       echo "$totalgames"
                         latestpipeline=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?per_page=${totalgames}"  | jq -r '.[].status') 
                     fi
         echo "${latestpipeline}"
@@ -60,7 +57,7 @@ build:
                                 echo "Failed"                               
                                 break
                           else    
-                                echo "Passed"
+                                echo "All Passed"
                                 jobresult=1
                                                      fi
                      done
