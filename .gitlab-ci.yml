@@ -41,14 +41,12 @@ build:
                   if [ $countStatus1 -lt 1 ] ; then
                   iscompleted=1
                     if [ "$product" == "all" ] ;then
-                      latestpipeline=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?per_page=${#LIST_GAME}"  | jq -r '.[].status') 
+                       totalgames=$(echo -n "$LIST_GAME" | wc -w)
+                      latestpipeline=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?per_page=${totalgames}"  | jq -r '.[].status') 
                       else
-                        latestpipeline=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?per_page=${#PRODUCT}"  | jq -r '.[].status') 
+                       totalgames=$(echo -n "$PRODUCT" | wc -w)
+                        latestpipeline=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?per_page=${totalgames}"  | jq -r '.[].status') 
                     fi
-          words=$(echo -n "$LIST_GAME" | wc -w)
-          echo "$words"
-          echo "${#PRODUCT}" 
-          echo "${#arr}"   
         echo "${latestpipeline}"
                 else      
                 sleep 30
