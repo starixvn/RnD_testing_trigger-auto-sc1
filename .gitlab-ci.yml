@@ -41,7 +41,7 @@ build:
                   if [ $countStatus1 -lt 1 ] ; then
                   iscompleted=1
                   echo "length product list" 
-                  lenglist= ${#arr} 
+                  lenglist= "${#arr}"
                     if [ "$product" == "all" ] ;then
                     lenglist= ${#LIST_GAME}
                     fi
