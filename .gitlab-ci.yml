@@ -54,10 +54,11 @@ build:
                   fi
              done
                      jobresult=0              
-                     for j in ${latestpipeline} ; do
+                     for j in $latestpipeline ; do
                           echo "value $j"
                          if [ $j == "failed" ] ; then
-                                echo "Break"                               
+                                echo "Break"      
+                                jobresult=0                         
                                 break
                           else    
                                 echo "All Passed"
