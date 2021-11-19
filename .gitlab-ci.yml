@@ -55,7 +55,7 @@ build:
              done
                      jobresult=0   
                      myarray=(${latestpipeline})
-                     for j in ${myarray[@]} ; do
+                     for j in ${myarray} ; do
                           echo "value $j"
                          if [ $j == "failed" ] ; then
                                 echo "Break"      
