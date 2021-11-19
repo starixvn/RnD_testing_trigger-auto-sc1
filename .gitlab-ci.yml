@@ -54,7 +54,7 @@ build:
                   fi
              done
                      jobresult=0   
-                     myarray=($latestpipeline)
+                     myarray=(${latestpipeline})
                      for j in ${myarray[@]} ; do
                           echo "value $j"
                          if [ $j == "failed" ] ; then
