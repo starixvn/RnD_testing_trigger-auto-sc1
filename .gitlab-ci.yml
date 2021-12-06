@@ -9,6 +9,7 @@ build:
     #BitCoin
     LIST_GAME: "Sedie VIpSedie TurboBigSmall BigSmall MiniSedie BigSmallSicBo BlackJack SedieWar TurboOddEven DragonTiger KenoProMax VipFishPrawnCrab VipBaccarat ThreeCards Lottery FourGuardians SpecialSedie FishPrawnCrab HeroSlot Roulette"
   script:
+    - echo "$PRODUCT"
     - apk add jq
     - arr=${PRODUCT//,/ }
     - >
