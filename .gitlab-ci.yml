@@ -13,7 +13,7 @@ build:
     - apk add jq
     - arr=${PRODUCT//,/ }
     - >
-      if [ "$PRODUCT" != "" ]; then  
+      if [ "$PRODUCT" != " " ]; then  
       for i in $LIST_GAME ; do
         listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
         for g in $arr ; do
