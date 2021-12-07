@@ -13,6 +13,7 @@ build:
     - apk add jq
     - arr=${PRODUCT//,/ }
     - >
+      if [ "$PRODUCT" =! "" ]; then  
       for i in $LIST_GAME ; do
         listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
         for g in $arr ; do
@@ -68,4 +69,4 @@ build:
                         echo "job passed"
                         exit 0
                       fi
-  when: PRODUCT | length > 0
+                    fi
