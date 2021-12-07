@@ -68,3 +68,4 @@ build:
                         echo "job passed"
                         exit 0
                       fi
+  when: PRODUCT | length > 0
