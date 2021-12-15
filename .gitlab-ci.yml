@@ -10,7 +10,7 @@ build:
   script:
     - apk add jq
     - arr=${PRODUCT//,/ }
-    - echo "$PROJECT"
+    - echo $PROJECT
     - >
         if [ "$PROJECT" == "all" ]; then
         echo "trigger SI"
