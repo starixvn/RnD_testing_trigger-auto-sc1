@@ -25,25 +25,25 @@ build:
             echo "$countStatusSm"
                   if [ $countStatusSi -lt 1 ] && [ $countStatusSm -lt 1 ]  ; then
                   iscompleted=1
-                  latestpipelineSi=$(curl --header "PRIVATE-TOKEN:VzVbSLJQ155NdoXpgF6n" "https://git3.nexdev.net/api/v4/projects/557/pipelines?per_page=1"  | jq -r '.[].status') 
-                  latestpipelineSm=$(curl --header "PRIVATE-TOKEN:h7_CwfF7VygPpjDKxJAR" "https://git3.nexdev.net/api/v4/projects/556/pipelines?per_page=1"  | jq -r '.[].status') 
+                 # latestpipelineSi=$(curl --header "PRIVATE-TOKEN:VzVbSLJQ155NdoXpgF6n" "https://git3.nexdev.net/api/v4/projects/557/pipelines?per_page=1"  | jq -r '.[].status') 
+                  #latestpipelineSm=$(curl --header "PRIVATE-TOKEN:h7_CwfF7VygPpjDKxJAR" "https://git3.nexdev.net/api/v4/projects/556/pipelines?per_page=1"  | jq -r '.[].status') 
                     else      
                         sleep 30
                   fi
         done
-            jobresult=1   
-            SUB="failed"
-            case $latestpipelineSi in *"$SUB"*)
-                jobresult=0
-            esac
-            case $latestpipelineSm in *"$SUB"*)
-                        jobresult=0
-                     esac
-                      if [ $jobresult == 0 ] ; then
-                        echo "job failed"
-                        exit 1
-                        else
-                        echo "job passed"
-                        exit 0
-                      fi
+            #jobresult=1   
+            #SUB="failed"
+            #case $latestpipelineSi in *"$SUB"*)
+            #    jobresult=0
+            #esac
+            #case $latestpipelineSm in *"$SUB"*)
+             #           jobresult=0
+              #       esac
+               #       if [ $jobresult == 0 ] ; then
+                #        echo "job failed"
+                 #       exit 1
+                  #      else
+                     #   echo "job passed"
+                    #    exit 0
+                   #   fi
         fi
