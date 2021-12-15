@@ -15,11 +15,11 @@ build:
         curl -X POST -F token=dafa1a4291029ab678f55ac052effd -F ref=master -F variables[PRODUCT]=$PRODUCT -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/557/trigger/pipeline
         curl -X POST -F token=2198255bcfdc5a92856e19f540bfc4 -F ref=master -F variables[PRODUCT]=$PRODUCT -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/556/trigger/pipeline
         iscompleted=0
-        while [[ $iscompleted == 0 ]]; do
-            countStatusSi=$(curl --header "PRIVATE-TOKEN:VzVbSLJQ155NdoXpgF6n" "https://git3.nexdev.net/api/v4/projects/557/pipelines?scope=running" | jq length)
-            countStatusSm=$(curl --header "PRIVATE-TOKEN:h7_CwfF7VygPpjDKxJAR" "https://git3.nexdev.net/api/v4/projects/556/pipelines?scope=running" | jq length)
-            echo "$countStatusSi"
-            echo "$countStatusSm"
+              while [[ $iscompleted == 0 ]]; do
+              countStatusSi=$(curl --header "PRIVATE-TOKEN:VzVbSLJQ155NdoXpgF6n" "https://git3.nexdev.net/api/v4/projects/557/pipelines?scope=running" | jq length)
+              countStatusSm=$(curl --header "PRIVATE-TOKEN:h7_CwfF7VygPpjDKxJAR" "https://git3.nexdev.net/api/v4/projects/556/pipelines?scope=running" | jq length)
+              echo "$countStatusSi"
+              echo "$countStatusSm"
                   if [ $countStatusSi -lt 1 ] && [ $countStatusSm -lt 1 ]; then
                   iscompleted=1
                  # latestpipelineSi=$(curl --header "PRIVATE-TOKEN:VzVbSLJQ155NdoXpgF6n" "https://git3.nexdev.net/api/v4/projects/557/pipelines?per_page=1"  | jq -r '.[].status') 
