@@ -6,60 +6,37 @@ build:
   tags:
     - docker-automation-test
   variables:
-    #BitCoin
-    LIST_GAME: "Sedie VIpSedie TurboBigSmall BigSmall MiniSedie BigSmallSicBo BlackJack SedieWar TurboOddEven DragonTiger KenoProMax VipFishPrawnCrab VipBaccarat ThreeCards Lottery FourGuardians SpecialSedie FishPrawnCrab HeroSlot Roulette"
+    LIST_PROJECT: "SC SI SM"
   script:
-    - echo "$PRODUCT"
     - apk add jq
     - arr=${PRODUCT//,/ }
     - >
-      if [ "$PRODUCT" != " " ]; then  
-      for i in $LIST_GAME ; do
-        listGame=$(echo ${i} | tr '[:upper:]' '[:lower:]')
-        for g in $arr ; do
-            product=$(echo ${g} | tr '[:upper:]' '[:lower:]')
-            if [ "$product" == "$listGame" ] || [ "$product" == "all" ] ;
-            then
-                isReady=0
-                while [[ $isReady == 0 ]] ; do
-                  countStatus=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length)
-                  echo "$countStatus"
-                  if [ $countStatus -lt 4 ] ;
-                  then
-                    isReady=1
-                    echo "$i"
-                    curl -X POST -F token=0f21176112256c893237283ca56f7b -F ref=master -F variables[PRODUCT]=$i -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID -F variables[MODE]=$MODE -F variables[cf_lang]=$cf_lang https://git3.nexdev.net/api/v4/projects/253/trigger/pipeline
-                  else
-                    sleep 20
-                  fi
-                  sleep 5
-                done
-            fi
-        done
-      done
+        if [ "$PROJECT" == "all" ] ; then
+        #trigerSI
+        curl -X POST -F token=dafa1a4291029ab678f55ac052effd -F ref=master -F variables[PRODUCT]=$PRODUCT -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/557/trigger/pipeline
+        #trigerSM			   
+        curl -X POST -F token=2198255bcfdc5a92856e19f540bfc4 -F ref=master -F variables[PRODUCT]=$PRODUCT -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/556/trigger/pipeline
+        # run and wait for result
         iscompleted=0
         while [[ $iscompleted == 0 ]] ; do
-                  countStatus1=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?scope=running" | jq length)
-                  echo "$countStatus1"
-                  if [ $countStatus1 -lt 1 ] ; then
+            countStatusSi=$(curl --header "PRIVATE-TOKEN:VzVbSLJQ155NdoXpgF6n" "https://git3.nexdev.net/api/v4/projects/557/pipelines?scope=running" | jq length)
+            countStatusSm=$(curl --header "PRIVATE-TOKEN:h7_CwfF7VygPpjDKxJAR" "https://git3.nexdev.net/api/v4/projects/556/pipelines?scope=running" | jq length)
+            echo "$countStatusSi"
+            echo "$countStatusSm"
+                  if [ $countStatusSi -lt 1 ] && [ $countStatusSm -lt 1 ]  ; then
                   iscompleted=1
-                    if [ "$product" == "all" ] ;then
-                        echo "run all games"
-                       totalgames=$(echo -n "$LIST_GAME" | wc -w)
-                      latestpipeline=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?per_page=${totalgames}"  | jq -r '.[].status') 
-                      else
-                      totalgames=$(echo -n "$arr" | wc -w)
-                        latestpipeline=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?per_page=${totalgames}"  | jq -r '.[].status') 
-                    fi
-        #echo "${latestpipeline}"
-                else      
-                sleep 30
+                  latestpipelineSi=$(curl --header "PRIVATE-TOKEN:VzVbSLJQ155NdoXpgF6n" "https://git3.nexdev.net/api/v4/projects/557/pipelines?per_page=1"  | jq -r '.[].status') 
+                  latestpipelineSm=$(curl --header "PRIVATE-TOKEN:h7_CwfF7VygPpjDKxJAR" "https://git3.nexdev.net/api/v4/projects/556/pipelines?per_page=1"  | jq -r '.[].status') 
+                    else      
+                        sleep 30
                   fi
-             done
-                     jobresult=1   
-                     SUB="failed"
-                     case $latestpipeline in *"$SUB"*)
-                        echo "It's there."
+        done
+            jobresult=1   
+            SUB="failed"
+            case $latestpipelineSi in *"$SUB"*)
+                jobresult=0
+            esac
+            case $latestpipelineSm in *"$SUB"*)
                         jobresult=0
                      esac
                       if [ $jobresult == 0 ] ; then
@@ -69,4 +46,56 @@ build:
                         echo "job passed"
                         exit 0
                       fi
-                    fi
+        elif [ "$PROJECT" == "SI" ] 
+            curl -X POST -F token=dafa1a4291029ab678f55ac052effd -F ref=master -F variables[PRODUCT]=$PRODUCT -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/557/trigger/pipeline
+            # run and wait for result
+            iscompleted=0
+            while [[ $iscompleted == 0 ]] ; do
+                countStatusSi=$(curl --header "PRIVATE-TOKEN:VzVbSLJQ155NdoXpgF6n" "https://git3.nexdev.net/api/v4/projects/557/pipelines?scope=running" | jq length)
+                  echo "$countStatusSi"
+                  if [ $countStatusSi -lt 1 ] ; then
+                  iscompleted=1
+                  latestpipelineSi=$(curl --header "PRIVATE-TOKEN:VzVbSLJQ155NdoXpgF6n" "https://git3.nexdev.net/api/v4/projects/557/pipelines?per_page=1"  | jq -r '.[].status') 
+                    else      
+                        sleep 30
+                  fi
+            done
+            jobresult=1   
+                    SUB="failed"
+                     case $latestpipelineSi in *"$SUB"*)
+                        jobresult=0
+                     esac
+                      if [ $jobresult == 0 ] ; then
+                        echo "job failed"
+                        exit 1
+                        else
+                        echo "job passed"
+                        exit 0
+                      fi
+        elif [ "$PROJECT" == "SM" ]  
+            curl -X POST -F token=2198255bcfdc5a92856e19f540bfc4 -F ref=master -F variables[PRODUCT]=$PRODUCT -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/556/trigger/pipeline		  
+            # run and wait for result
+            iscompleted=0
+                while [[ $iscompleted == 0 ]] ; do
+                    countStatusSm=$(curl --header "PRIVATE-TOKEN:h7_CwfF7VygPpjDKxJAR" "https://git3.nexdev.net/api/v4/projects/556/pipelines?scope=running" | jq length)
+                    echo "$countStatusSm"
+                  if [ $countStatusSm -lt 1 ]  ; then
+                  iscompleted=1
+                  latestpipelineSm=$(curl --header "PRIVATE-TOKEN:h7_CwfF7VygPpjDKxJAR" "https://git3.nexdev.net/api/v4/projects/556/pipelines?per_page=1"  | jq -r '.[].status') 
+                else      
+                    sleep 30
+                  fi
+                done
+                jobresult=1   
+                    SUB="failed"
+                    case $latestpipelineSm in *"$SUB"*)
+                        jobresult=0
+                     esac
+                      if [ $jobresult == 0 ] ; then
+                        echo "job failed"
+                        exit 1
+                        else
+                        echo "job passed"
+                        exit 0
+                      fi				
+        fi
