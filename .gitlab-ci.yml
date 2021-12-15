@@ -46,7 +46,7 @@ build:
                         echo "job passed"
                         exit 0
                       fi
-        elif [ "$PROJECT" == "SI" ] then
+        elif [ "$PROJECT" == "SI" ] ; then
             curl -X POST -F token=dafa1a4291029ab678f55ac052effd -F ref=master -F variables[PRODUCT]=$PRODUCT -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/557/trigger/pipeline
             # run and wait for result
             iscompleted=0
@@ -72,7 +72,7 @@ build:
                         echo "job passed"
                         exit 0
                       fi
-        elif [ "$PROJECT" == "SM" ]  then
+        elif [ "$PROJECT" == "SM" ] ; then
             curl -X POST -F token=2198255bcfdc5a92856e19f540bfc4 -F ref=master -F variables[PRODUCT]=$PRODUCT -F variables[ENV]=$ENV -F variables[parentTrigger]=$CI_PIPELINE_ID  https://git3.nexdev.net/api/v4/projects/556/trigger/pipeline		  
             # run and wait for result
             iscompleted=0
