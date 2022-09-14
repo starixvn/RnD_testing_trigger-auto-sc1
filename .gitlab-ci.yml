@@ -12,7 +12,7 @@ build:
     - arr=${PRODUCT//,/ }
     - >
       if [ "$PRODUCT" != "" ] || [ "$PRODUCT" != " " ] ;then
-      if [ "$PRODUCT" == "ALL" ] ;then
+              if [ "$PRODUCT" == "ALL" ] ;then
             for i in $LIST_GAME ; do
             isRun=1
             isReady=0
@@ -84,4 +84,5 @@ build:
                         exit 0
                       fi
                                             fi
-                                                      fi  
+                                                    
+      fi
