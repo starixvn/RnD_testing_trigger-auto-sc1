@@ -50,8 +50,7 @@ build:
                   sleep 2
           done
           done
-          fi
-          fi     
+          fi 
 
         if [[ $isRun == 1 ]] ; then      
         iscompleted=0
@@ -85,3 +84,4 @@ build:
                         exit 0
                       fi
                                             fi
+                                                      fi  
