@@ -9,9 +9,10 @@ build:
     LIST_GAME: "1 2 22 9 24 28 4 6 10 27 7 3 26 23 25 35 21 38 39 42 29 47 46 31 45 48 50"
   script:
     - apk add jq
-    - arr=${GAMEID//,/ }
+    - arr=${PRODUCT//,/ }
     - >
-      if [ "$GAMEID" == "ALL" ] ;then
+      if [ "$PRODUCT" != "" ] ;then
+      if [ "$PRODUCT" == "ALL" ] ;then
             for i in $LIST_GAME ; do
             isRun=1
             isReady=0
@@ -31,8 +32,8 @@ build:
           done
           fi
 
-      if [ "$GAMEID" != "ALL" ] ;then
-            for i in $GAMEID ; do
+      if [ "$PRODUCT" != "ALL" ] ;then
+            for i in $$PRODUCT ; do
             isRun=1
             isReady=0
               while [[ $isReady == 0 ]] ; do
@@ -50,6 +51,7 @@ build:
           done
           done
           fi
+          fi     
 
         if [[ $isRun == 1 ]] ; then      
         iscompleted=0
@@ -58,7 +60,7 @@ build:
                   echo "$countStatus1"
                   if [ $countStatus1 -lt 1 ] ; then
                   iscompleted=1
-                    if [ "$GAMEID" == "ALL" ] ;then
+                    if [ "$PRODUCT" == "ALL" ] ;then
                         echo "run all games"
                        totalgames=$(echo -n "$LIST_GAME" | wc -w)
                       latestpipeline=$(curl --header "PRIVATE-TOKEN:ue7_6P-5zqsVhraztWxe" "https://git3.nexdev.net/api/v4/projects/253/pipelines?per_page=${totalgames}"  | jq -r '.[].status') 
