@@ -11,7 +11,7 @@ build:
     - apk add jq
     - arr=${PRODUCT//,/ }
     - >
-      if [ "$PRODUCT" != "" ] ;then
+      if [ "$PRODUCT" != "" ] || [ "$PRODUCT" = " " ] ;then
       if [ "$PRODUCT" == "ALL" ] ;then
             for i in $LIST_GAME ; do
             isRun=1
