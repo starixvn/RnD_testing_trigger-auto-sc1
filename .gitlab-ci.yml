@@ -33,7 +33,7 @@ build:
           fi
 
       if [ "$PRODUCT" != "ALL" ] ;then
-            for i in $$PRODUCT ; do
+            for i in $PRODUCT ; do
             isRun=1
             isReady=0
               while [[ $isReady == 0 ]] ; do
