@@ -1,5 +1,14 @@
 stages: 
+  - delayTest
   - testMain
+
+delayTest:
+  stage: delayTest
+  rules:
+    - if: '$TRIGGERED_BY_DEPLOYMENT == "true"'
+  script:
+    - echo "when triggered by deployment, delay 15 minutes"
+    - sleep 900
 
 build:
   stage: testMain
