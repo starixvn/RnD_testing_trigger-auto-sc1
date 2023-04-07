@@ -28,7 +28,7 @@ build:
                 if [ $countStatus -lt $TOTALRUNNER ] ;then
               isReady=1
               echo "game name ${i}"
-              curl -X POST -F token=893c63a78c9e7b50990578047681d8 -F ref=dev -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[TRIGGER]=true -F variables[parentTrigger]=$CI_PIPELINE_ID https://git3.nexdev.net/api/v4/projects/910/trigger/pipeline
+              curl -X POST -F token=893c63a78c9e7b50990578047681d8 -F ref=master -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[TRIGGER]=true -F variables[parentTrigger]=$CI_PIPELINE_ID https://git3.nexdev.net/api/v4/projects/910/trigger/pipeline
               sleep 2
             else
              sleep 20
@@ -48,7 +48,7 @@ build:
                 if [ $countStatus -lt $TOTALRUNNER ] ;then
               isReady=1
               echo "game name ${i}"
-              curl -X POST -F token=893c63a78c9e7b50990578047681d8 -F ref=dev -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[TRIGGER]=true -F variables[parentTrigger]=$CI_PIPELINE_ID https://git3.nexdev.net/api/v4/projects/910/trigger/pipeline
+              curl -X POST -F token=893c63a78c9e7b50990578047681d8 -F ref=master -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[TRIGGER]=true -F variables[parentTrigger]=$CI_PIPELINE_ID https://git3.nexdev.net/api/v4/projects/910/trigger/pipeline
               sleep 2
             else
              sleep 20
