@@ -24,11 +24,11 @@ test:
             isRun=1
             isReady=0
               while [[ $isReady == 0 ]] ; do
-                countStatus=$(curl --header "PRIVATE-TOKEN:qgqeyvxnxpsJRp9jwrkj" "https://git3.nexdev.net/api/v4/projects/910/pipelines?scope=running" | jq length)
+                countStatus=$(curl --header "PRIVATE-TOKEN:$private_token" "https://git3.nexdev.net/api/v4/projects/910/pipelines?scope=running" | jq length)
                 if [ $countStatus -lt $TOTALRUNNER ] ;then
               isReady=1
               echo "game name ${i}"
-              curl -X POST -F token=893c63a78c9e7b50990578047681d8 -F ref=master -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[STACK_NAME]=$STACK_NAME -F variables[TRIGGER]=true -F variables[MODE]=$MODE -F variables[MOBILE]=$MOBILE -F variables[UPLOAD_ALLURE_RP]=$UPLOAD_ALLURE_RP -F variables[parentTrigger]=$CI_PIPELINE_ID https://git3.nexdev.net/api/v4/projects/910/trigger/pipeline
+              curl -X POST -F token=$trigger_token -F ref=master -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[STACK_NAME]=$STACK_NAME -F variables[TRIGGER]=true -F variables[MODE]=$MODE -F variables[MOBILE]=$MOBILE -F variables[UPLOAD_ALLURE_RP]=$UPLOAD_ALLURE_RP -F variables[parentTrigger]=$CI_PIPELINE_ID https://git3.nexdev.net/api/v4/projects/910/trigger/pipeline
               sleep 10
             else
              sleep 20
@@ -43,12 +43,12 @@ test:
             isRun=1
             isReady=0
               while [[ $isReady == 0 ]] ; do
-                countStatus=$(curl --header "PRIVATE-TOKEN:qgqeyvxnxpsJRp9jwrkj" "https://git3.nexdev.net/api/v4/projects/910/pipelines?scope=running" | jq length)
+                countStatus=$(curl --header "PRIVATE-TOKEN:$private_token" "https://git3.nexdev.net/api/v4/projects/910/pipelines?scope=running" | jq length)
                 echo "current job running ${countStatus}"
                 if [ $countStatus -lt $TOTALRUNNER ] ;then
               isReady=1
               echo "game name ${i}"
-              curl -X POST -F token=893c63a78c9e7b50990578047681d8 -F ref=master -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[STACK_NAME]=$STACK_NAME -F variables[TRIGGER]=true -F variables[MODE]=$MODE -F variables[MOBILE]=$MOBILE -F variables[UPLOAD_ALLURE_RP]=$UPLOAD_ALLURE_RP -F variables[parentTrigger]=$CI_PIPELINE_ID https://git3.nexdev.net/api/v4/projects/910/trigger/pipeline
+              curl -X POST -F token=$trigger_token -F ref=master -F variables[GAMEID]=$i -F variables[ENV]=$ENV -F variables[STACK_NAME]=$STACK_NAME -F variables[TRIGGER]=true -F variables[MODE]=$MODE -F variables[MOBILE]=$MOBILE -F variables[UPLOAD_ALLURE_RP]=$UPLOAD_ALLURE_RP -F variables[parentTrigger]=$CI_PIPELINE_ID https://git3.nexdev.net/api/v4/projects/910/trigger/pipeline
               sleep 10
             else
              sleep 20
@@ -61,17 +61,17 @@ test:
         if [[ $isRun == 1 ]] ; then      
         iscompleted=0
         while [[ $iscompleted == 0 ]] ; do
-                  countStatus1=$(curl --header "PRIVATE-TOKEN:qgqeyvxnxpsJRp9jwrkj" "https://git3.nexdev.net/api/v4/projects/910/pipelines?scope=running" | jq length)
+                  countStatus1=$(curl --header "PRIVATE-TOKEN:$private_token" "https://git3.nexdev.net/api/v4/projects/910/pipelines?scope=running" | jq length)
                   echo "$countStatus1"
                   if [ $countStatus1 -lt 1 ] ; then
                   iscompleted=1
                     if [ "$PRODUCT" == "ALL" ] ;then
                         echo "run all games"
                        totalgames=$(echo -n "$LIST_GAME" | wc -w)
-                      latestpipeline=$(curl --header "PRIVATE-TOKEN:qgqeyvxnxpsJRp9jwrkj" "https://git3.nexdev.net/api/v4/projects/910/pipelines?per_page=${totalgames}"  | jq -r '.[].status') 
+                      latestpipeline=$(curl --header "PRIVATE-TOKEN:$private_token" "https://git3.nexdev.net/api/v4/projects/910/pipelines?per_page=${totalgames}"  | jq -r '.[].status') 
                       else
                       totalgames=$(echo -n "$arr" | wc -w)
-                        latestpipeline=$(curl --header "PRIVATE-TOKEN:qgqeyvxnxpsJRp9jwrkj" "https://git3.nexdev.net/api/v4/projects/910/pipelines?per_page=${totalgames}"  | jq -r '.[].status') 
+                        latestpipeline=$(curl --header "PRIVATE-TOKEN:$private_token" "https://git3.nexdev.net/api/v4/projects/910/pipelines?per_page=${totalgames}"  | jq -r '.[].status') 
                     fi
                 else      
                 sleep 30
