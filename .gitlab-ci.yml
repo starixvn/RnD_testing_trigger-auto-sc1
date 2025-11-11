@@ -13,7 +13,7 @@ delayTest:
 test:
   stage: testMain
   tags:
-    - docker-automation-test  
+    - auto-test-prod  
   script:
     - apk add jq
     - arr=${PRODUCT//,/ }
